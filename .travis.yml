@@ -4,7 +4,7 @@ services: "mysql"
 branches:
   only:
   - master
-  - initial2
+  - develop
 cache:
   directories:
     - node_modules
