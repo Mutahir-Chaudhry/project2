@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var WorkOrder = sequelize.define("WorkOrder", {
     // Giving the Author model a name of type STRING
     name: {
@@ -16,12 +16,10 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   WorkOrder.associate = models => {
-    WorkOrder.hasMany(models.TimeSheet,
-      {
-        onDelete: "cascade"
-      })
-  }
-
+    WorkOrder.hasMany(models.TimeSheet, {
+      onDelete: "cascade"
+    });
+  };
 
   return WorkOrder;
 };

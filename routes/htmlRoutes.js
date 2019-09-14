@@ -3,21 +3,32 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.WorkOrder.findAll({}).then(function(dbWorkOrder) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbExamples
+        workOrders: dbWorkOrder
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
+  // Load Work Order model
+  app.get("/WorkOrder", function(req, res) {
+    db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
+      dbWorkOrder
     ) {
-      res.render("example", {
-        example: dbExample
+      res.render("WorkOrder", {
+        workOrders: dbWorkOrder
+      });
+    });
+  });
+
+  // Load Time Sheet Model
+  app.get("/TimeSheet", function(req, res) {
+    db.TimeSheet.findOne({ where: { id: req.params.id } }).then(function(
+      dbTimeSheet
+    ) {
+      res.render("TimeSheet", {
+        timeSheets: dbTimeSheet
       });
     });
   });
