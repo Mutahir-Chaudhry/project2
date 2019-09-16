@@ -3,7 +3,8 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
-
+//createWorkOrder button is new. I have no idea what im doing for the Jquery lool
+// var $createWorkOrder = $("#newWorkOrderButton");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {

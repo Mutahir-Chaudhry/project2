@@ -7,22 +7,37 @@
           <h5 class="card-title">Work Orders</h5>
 
           <p>
-            <strong>ID</strong>: {{WorkOrder.id}}
+            <strong>ID</strong>: {{workOrder.id}}
           </p>
 
           <p>
-            <strong>Name</strong>: {{WorkOrder.name}}
+            <strong>Name</strong>: {{workOrder.name}}
           </p>
 
           <p>
-            <strong>Description:</strong> {{WorkOrder.description}}
+            <strong>Description:</strong>: {{workOrder.description}}
           </p>
 
           <p>
-            <strong>Completed</strong>: {{WorkOrder.completed}}
+            <strong>Completed</strong>: {{workOrder.completed}}
           </p>
 
-          <a href="/">← Back To Home</a>
+          <div class="row">
+
+            <div class="col">
+              <button class="btn btn-primary">
+                <a style = "text-decoration: none;" ="/">Back To Home</a>
+              </button>
+            </div>
+
+            <div class="col offset-6">
+              <button class="btn btn-secondary" id="newWorkOrderButton">
+                New Work Order
+              </button>
+            </div>
+
+          </div>
+
 
         </div>
       </div>
