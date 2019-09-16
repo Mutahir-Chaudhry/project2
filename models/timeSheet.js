@@ -12,14 +12,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     }
-    // workOrderId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false
-    // },
-    // userId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false
-    // }
   });
 
   TimeSheet.associate = function(models) {

@@ -6,29 +6,25 @@ module.exports = function(app) {
     db.WorkOrder.findAll({}).then(function(dbWorkOrder) {
       res.render("index", {
         msg: "Welcome!",
-        workOrders: dbWorkOrder
+        workOrder: dbWorkOrder
       });
     });
   });
 
   // Load Work Order model
   app.get("/WorkOrder", function(req, res) {
-    db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
-      dbWorkOrder
-    ) {
+    db.WorkOrder.findAll({}).then(function(dbWorkOrder) {
       res.render("WorkOrder", {
-        workOrders: dbWorkOrder
+        workOrder: dbWorkOrder
       });
     });
   });
 
   // Load Time Sheet Model
   app.get("/TimeSheet", function(req, res) {
-    db.TimeSheet.findOne({ where: { id: req.params.id } }).then(function(
-      dbTimeSheet
-    ) {
+    db.TimeSheet.findAll({}).then(function(dbTimeSheet) {
       res.render("TimeSheet", {
-        timeSheets: dbTimeSheet
+        TimeSheet: dbTimeSheet
       });
     });
   });
