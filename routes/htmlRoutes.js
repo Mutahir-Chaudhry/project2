@@ -10,11 +10,7 @@ module.exports = function(app) {
       });
     });
   });
-  app.get("/newWorkOrder", function(req, res) {
-    res.render("newWorkOrder", {
-      msg: "Welcome!  Create your new Work Order below"
-    });
-  });
+
   app.get("/workOrder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
       dbWorkOrders

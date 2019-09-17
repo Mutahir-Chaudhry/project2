@@ -27,12 +27,6 @@ var API = {
       url: "api/workOrders/" + id,
       type: "DELETE"
     });
-  },
-  getNewWorkOrder: function() {
-    return $.ajax({
-      url: "/newWorkOrder",
-      type: "GET"
-    });
   }
 };
 
