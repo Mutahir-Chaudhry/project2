@@ -1,3 +1,3 @@
-INSERT INTO WorkOrders (name, description, completed, createdAt, updatedAt) VALUES ("Seth Rogan", "He smokes hella", 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-INSERT INTO TimeSheets (startTime, EndTime, description, createdAt, updatedAt) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, "This is info for time sheet model", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO workOrders (name, description, completed, createdAt, updatedAt) VALUES ("Seth Rogan", "He smokes hella", 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO timeSheets (startTime, EndTime, description, createdAt, updatedAt) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, "This is info for time sheet model", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 INSERT INTO users (name,createdAt,updatedAt) VALUES ("James Franco",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
