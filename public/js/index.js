@@ -3,7 +3,7 @@ var $workOrderName = $("#workOrder-name");
 var $workOrderDescription = $("#workOrder-description");
 var $workOrderList = $("#workOrder-list");
 //createWorkOrder button is new. I have no idea what im doing for the Jquery lool
-var $newWorkOrder = $("#newWorkOrderButton");
+// var $newWorkOrder = $("#newWorkOrderButton");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveWorkOrder: function(workOrder) {
@@ -26,6 +26,12 @@ var API = {
     return $.ajax({
       url: "api/workOrders/" + id,
       type: "DELETE"
+    });
+  },
+  getNewWorkOrder: function() {
+    return $.ajax({
+      url: "/newWorkOrder",
+      type: "GET"
     });
   }
 };
