@@ -8,25 +8,48 @@
 
           <p>
             <strong>Name</strong>: {{workOrder.name}}
-          </p>
+          </p> --}}
 
-          <p>
-            <strong>Description:</strong>: {{workOrder.description}}
-          </p>
+          {{!-- <p>
+            <strong>Description:</strong>: {{workOrder.description}} --}}
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="example-text">ID</label>
+              <input type="text" id="example-text" class="form-control" aria-describedby="example-text">
+            </div>
+            <div class="form-group">
+              <label for="example-text">Full Name</label>
+              <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+                placeholder="Enter Full Name Text">
+            </div>
 
-          <p>
+            <div class="form-group">
+              <label for="example-description">Description of Job</label>
+              <textarea class="form-control" id="example-description" aria-describedby="example-description"
+                placeholder="Enter Example Description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="example-text">Completion</label>
+              {{!-- <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+                  > --}}
+            </div>
+
+          </form>
+          {{!-- </p> --}}
+
+          {{!-- <p>
             <strong>Completed</strong>: {{workOrder.completed}}
-          </p>
+          </p> --}}
 
           <div class="row">
 
-            <div class="col">
+            <div class="col-3">
               <button class="btn btn-primary">
                 <a href="/" style="color: white">Back To Home</a>
               </button>
             </div>
-
-            <div class="col offset-6">
+            <button id="submit" class="btn btn-primary float-right">Submit</button>
+            <div class="col-6">
               <button class="btn btn-secondary" id="newWorkOrderButton">
                 Add Time Sheet
               </button>
