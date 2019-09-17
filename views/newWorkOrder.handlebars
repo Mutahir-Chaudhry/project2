@@ -5,17 +5,17 @@
                 <h2>{{msg}}</h2>
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label for="example-text">Client Name</label>
-                        <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+                        <label for="name">Client Name: </label>
+                        <input type="text" class="form-control name" aria-describedby="name"
                             placeholder="Enter Client's Name Here">
                     </div>
                     <div class="form-group">
-                        <label for="example-description">Work Order Description</label>
-                        <textarea class="form-control" id="{{workOrder.description}}" aria-describedby="example-description"
-                            placeholder="Enter Example Description"></textarea>
+                        <label for="description">Work Order Description: </label>
+                        <textarea class="form-control description" aria-describedby="description"
+                            placeholder="Enter Description of Work Order"></textarea>
                     </div>
                     <a href = "/"> Back to Home</a>
-                    <button id="submit" class="btn btn-primary float-right">Submit</button>
+                    <button class="btn btn-primary float-right submit">Submit</button>
                 </form>
             </div>
         </div>
