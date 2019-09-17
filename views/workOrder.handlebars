@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+
+          <h5 class="card-title">Work Order ID: {{workOrder.id}}</h5>
+
+          <p>
+            <strong>Name</strong>: {{workOrder.name}}
+          </p>
+
+          <p>
+            <strong>Description:</strong>: {{workOrder.description}}
+          </p>
+
+          <p>
+            <strong>Completed</strong>: {{workOrder.completed}}
+          </p>
+
+          <div class="row">
+
+            <div class="col">
+              <button class="btn btn-primary">
+                <a href="/" style="color: white">Back To Home</a>
+              </button>
+            </div>
+
+            <div class="col offset-6">
+              <button class="btn btn-secondary" id="newWorkOrderButton">
+                Add Time Sheet
+              </button>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
