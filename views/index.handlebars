@@ -2,8 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
         <h3>Work Orders:</h3>
         <ul id="example-list" class="list-group">
           {{#each workOrder}}
@@ -13,6 +11,7 @@
           </li>
           {{/each}}
         </ul>
+        <a href = "newWorkOrder">Click this link to create a new work order</a>
       </div>
     </div>
   </div>

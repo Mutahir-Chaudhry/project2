@@ -1,99 +1,99 @@
 // Get references to page elements
-var $workOrderName = $("#workOrder-name");
-var $workOrderDescription = $("#workOrder-description");
-var $workOrderList = $("#workOrder-list");
-//createWorkOrder button is new. I have no idea what im doing for the Jquery lool
-var $SubmitWorkOrderButton = $("#submitNewWorkOrder");
+var $exampleText = $("#example-text");
+var $exampleDescription = $("#example-description");
+var $submitBtn = $("#submit");
+var $exampleList = $("#example-list");
+
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveWorkOrder: function(workOrder) {
+  saveExample: function(example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/newworkorder",
-      data: JSON.stringify(workOrder)
+      url: "api/examples",
+      data: JSON.stringify(example)
     });
   },
-  getWorkOrders: function() {
+  getExamples: function() {
     return $.ajax({
-      url: "api/allworkorders",
+      url: "api/examples",
       type: "GET"
     });
   },
-  deleteWorkOrder: function(id) {
+  deleteExample: function(id) {
     return $.ajax({
-      url: "api/workorder/" + id,
+      url: "api/examples/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshworkOrders gets new workOrders from the db and repopulates the list
-var refreshworkOrders = function() {
-  API.getworkOrders().then(function(data) {
-    var $workOrders = data.map(function(workOrder) {
+// refreshExamples gets new examples from the db and repopulates the list
+var refreshExamples = function() {
+  API.getExamples().then(function(data) {
+    var $examples = data.map(function(example) {
       var $a = $("<a>")
-        .text(workOrder.name)
-        .attr("href", "/workOrder/" + workOrder.id);
+        .text(example.text)
+        .attr("href", "/example/" + example.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": workOrder.id
+          "data-id": WorkOrder.id
         })
         .append($a);
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("Complete");
+        .text("ｘ");
 
       $li.append($button);
 
       return $li;
     });
 
-    $workOrderList.empty();
-    $workOrderList.append($workOrders);
+    $exampleList.empty();
+    $exampleList.append($examples);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new workOrder
-// Save the new workOrder to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var workOrder = {
-    name: $workOrderName.val().trim(),
-    description: $workOrderDescription.val().trim()
+  var example = {
+    text: $exampleText.val().trim(),
+    description: $exampleDescription.val().trim()
   };
 
-  if (!(workOrder.name && workOrder.description)) {
-    alert("You must enter an workOrder text and description!");
+  if (!(example.text && example.description)) {
+    alert("You must enter an example text and description!");
     return;
   }
 
-  API.saveWorkOrder(workOrder).then(function() {
-    refreshWorkOrders();
+  API.saveExample(example).then(function() {
+    refreshExamples();
   });
 
-  $workOrderName.val("");
-  $workOrderDescription.val("");
+  $exampleText.val("");
+  $exampleDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an workOrder's delete button is clicked
-// Remove the workOrder from the db and refresh the list
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteworkOrder(idToDelete).then(function() {
-    refreshworkOrders();
+  API.deleteExample(idToDelete).then(function() {
+    refreshExamples();
   });
 };
 
 // Add event listeners to the submit and delete buttons
-$SubmitWorkOrderButton.on("click", handleFormSubmit);
-$workOrderList.on("click", ".delete", handleDeleteBtnClick);
+$submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
