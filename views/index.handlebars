@@ -4,11 +4,11 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        <h3>WorkOrders:</h3>
+        <h3>Work Orders:</h3>
         <ul id="example-list" class="list-group">
           {{#each workOrder}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="workOrder/{{this.id}}">{{this.name}}</a>
+            <a href="workorder/{{this.id}}">{{this.name}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}

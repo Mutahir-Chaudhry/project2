@@ -3,7 +3,7 @@ var $workOrderName = $("#workOrder-name");
 var $workOrderDescription = $("#workOrder-description");
 var $workOrderList = $("#workOrder-list");
 //createWorkOrder button is new. I have no idea what im doing for the Jquery lool
-// var $newWorkOrder = $("#newWorkOrderButton");
+var $SubmitWorkOrderButton = $("#submitNewWorkOrder");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveWorkOrder: function(workOrder) {
@@ -12,19 +12,19 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/workOrders",
+      url: "api/newworkorder",
       data: JSON.stringify(workOrder)
     });
   },
   getWorkOrders: function() {
     return $.ajax({
-      url: "api/workOrders",
+      url: "api/allworkorders",
       type: "GET"
     });
   },
   deleteWorkOrder: function(id) {
     return $.ajax({
-      url: "api/workOrders/" + id,
+      url: "api/workorder/" + id,
       type: "DELETE"
     });
   }
@@ -74,8 +74,8 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveworkOrder(workOrder).then(function() {
-    refreshworkOrders();
+  API.saveWorkOrder(workOrder).then(function() {
+    refreshWorkOrders();
   });
 
   $workOrderName.val("");
@@ -95,5 +95,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$newWorkOrder.on("click", handleFormSubmit);
+$SubmitWorkOrderButton.on("click", handleFormSubmit);
 $workOrderList.on("click", ".delete", handleDeleteBtnClick);

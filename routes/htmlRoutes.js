@@ -10,12 +10,18 @@ module.exports = function(app) {
       });
     });
   });
-
-  app.get("/workOrder/:id", function(req, res) {
+  //Load New Work Order page
+  app.get("/newworkorder", function(req, res) {
+    res.render("newWorkOrder", {
+      msg: "Create your new Work Order below!"
+    });
+  });
+  //Load work order by id
+  app.get("/workorder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
       dbWorkOrders
     ) {
-      res.render("workOrder", {
+      res.render("workorder", {
         workOrder: dbWorkOrders
       });
     });
