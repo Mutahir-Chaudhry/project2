@@ -3,31 +3,32 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.WorkOrder.findAll({}).then(function(dbWorkOrder) {
+    db.WorkOrder.findAll({}).then(function(dbWorkOrders) {
       res.render("index", {
         msg: "Welcome!",
-        workOrder: dbWorkOrder
+        workOrder: dbWorkOrders
       });
     });
   });
 
-  // Load Work Order model
-  app.get("/WorkOrder", function(req, res) {
-    db.WorkOrder.findAll({}).then(function(dbWorkOrder) {
-      res.render("WorkOrder", {
-        workOrder: dbWorkOrder
+  app.get("/workOrder/:id", function(req, res) {
+    db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
+      dbWorkOrders
+    ) {
+      res.render("workOrder", {
+        workOrder: dbWorkOrders
       });
     });
   });
 
-  // Load Time Sheet Model
-  app.get("/TimeSheet", function(req, res) {
-    db.TimeSheet.findAll({}).then(function(dbTimeSheet) {
-      res.render("TimeSheet", {
-        TimeSheet: dbTimeSheet
-      });
-    });
-  });
+  // // Load Time Sheet Model
+  // app.get("/TimeSheet", function(req, res) {
+  //   db.TimeSheet.findAll({}).then(function(dbTimeSheets) {
+  //     res.render("TimeSheet", {
+  //       TimeSheet: dbTimeSheets
+  //     });
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
