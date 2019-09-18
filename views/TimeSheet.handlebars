@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card mt-4">
+                <div class="card-body">
+
+                    <h5 class="card-title">TimeSheet</h5>
+                    <h6 class="workOrder-title">Work Order Details:</h6>
+                    {{!-- <p>
+            <strong>ID</strong>: {{workOrder.id}}
+          </p> --}}
+
+                    {{!-- <p>
+                        <strong>Name</strong>: {{TimeSheet.name}}
+                    </p> --}}
+
+                    <p>
+                        <strong>Start Time</strong>: {{TimeSheet.starTime}}
+                    </p>
+                    <p>
+                        <strong>End Time</strong>: {{TimeSheet.endTime}}
+                    </p>
+                    <p>
+                        <strong>Description</strong>: {{TimeSheet.description}}
+                    </p>
+                    <p>
+                        <strong>Select Employee</strong>: <div class="dropdownMenus col-md-12">
+                            <div class='form-field'>
+                                {{!-- <label for='employeeFilter'></label> --}}
+                                <select id='employeeFilter' class='form-control'>
+                                    <option></option>}
+                                    {{#each shoes}}
+                                    <option value="{{this}}">{{this.Employee}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                    </p>
+                    {{!-- <p>
+            <strong>Completed</strong>: {{TimeSheet.completed}}
+          </p> --}}
+
+                    <div class="row">
+
+                        <div class="col-3">
+                            <button class="btn">
+                                
+                                <a  href="index.handlebars" >Back to Home</a>
+                                
+                            </button>
+                        </div>
+
+                        <div class="col-5">
+                            <button class="btn btn-secondary" id="newWorkOrderButton">
+                                New Work Order
+                            </button>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="btn btn-success" id="timeSheetSubmit">Submit TimeSheet</button>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

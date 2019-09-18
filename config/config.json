@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "MySQLPassword",
+    "password": "Password!",
     "database": "Toad",
     "host": "localhost",
     "dialect": "mysql"

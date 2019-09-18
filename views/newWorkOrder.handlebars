@@ -1,0 +1,27 @@
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h2>{{msg}}</h2>
+                <form class="clearfix mb-4" action="POST">
+                    <div class="form-group">
+                        <label for="name">Client Name: </label>
+                        <input type="text" class="form-control name" aria-describedby="name"
+                            placeholder="Enter Client's Name Here">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Work Order Description: </label>
+                        <textarea class="form-control description" aria-describedby="description"
+                            placeholder="Enter Description of Work Order"></textarea>
+                    </div>
+                    <a href = "/"> Back to Home</a>
+                    <button class="btn btn-primary float-right submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script src="/js/index.js"></script>

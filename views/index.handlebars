@@ -22,11 +22,13 @@
           {{#each workOrder}}
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="workOrder/{{this.id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <button class="btn btn-danger float-right delete" id={{this.id}}>ｘ</button>
           </li>
           {{/each}}
         </ul>
+        <a href = "/newWorkOrder">Create a new Work Order -> </a>
       </div>
     </div>
   </div>
+
 <script src="/js/index.js"></script>

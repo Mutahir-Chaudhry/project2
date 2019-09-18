@@ -8,25 +8,21 @@
 
           <p>
             <strong>Name</strong>: {{workOrder.name}}
-          </p>
+          </p> --}}
 
           <p>
             <strong>Description:</strong>: {{workOrder.description}}
           </p>
-{{!-- 
-          <p>
-            <strong>Completed</strong>: {{workOrder.completed}}
-          </p> --}}
 
           <div class="row">
 
-            <div class="col">
+            <div class="col-3">
               <button class="btn btn-primary">
                 <a href="/" style="color: white">Back To Home</a>
               </button>
             </div>
-
-            <div class="col offset-6">
+            <button id="submit" class="btn btn-primary float-right">Submit</button>
+            <div class="col-6">
               <button class="btn btn-secondary" id="newWorkOrderButton">
                 Add Time Sheet
               </button>
