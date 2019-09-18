@@ -3,10 +3,10 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.WorkOrder.findAll({}).then(function(dbWorkOrder) {
+    db.WorkOrder.findAll({}).then(function(results) {
       res.render("index", {
         msg: "Welcome!",
-        workOrder: dbWorkOrder
+        workOrder: results
       });
     });
   });
@@ -19,40 +19,38 @@ module.exports = function(app) {
   //Load work order by id
   app.get("/workorder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
-      dbWorkOrder
+      results
     ) {
       res.render("workorder", {
-        workOrder: dbWorkOrder
+        workOrder: results
       });
     });
   });
 
-  // Load Time Sheet Model // Load workOrder
-  app.get("/TimeSheet", function(req, res) {
-    db.TimeSheet.findAll({}).then(function(dbTimeSheet) {
+  // Load Time Sheet Model
+  app.get("/timesheet", function(req, res) {
+    db.TimeSheet.findAll({}).then(function(results) {
       res.render("TimeSheet", {
-        TimeSheet: dbTimeSheet
+        TimeSheet: results
       });
     });
   });
-
-  // Load Time Sheet Model // Load workOrder
+  // Load workOrder model
   app.get("/workorder", function(req, res) {
-    db.workOrder.findAll({}).then(function(dbWorkOrders) {
+    db.WorkOrder.findAll({}).then(function(results) {
       res.render("workOrder", {
-        WorkOrder: dbWorkOrders
+        workOrder: results
       });
     });
   });
-  // Load Time Sheet Model // Load workOrder
-  app.get("/mainTimeSheet", function(req, res) {
-    db.TimeSheet.findAll({}).then(function(dbmainTimeSheet) {
+  // Load Main Time Sheet
+  app.get("/maintimesheet", function(req, res) {
+    db.TimeSheet.findAll({}).then(function(results) {
       res.render("mainTimeSheet", {
-        mainTimeSheet: dbmainTimeSheet
+        TimeSheet: results
       });
     });
   });
-
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

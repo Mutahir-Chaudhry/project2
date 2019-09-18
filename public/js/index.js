@@ -12,13 +12,13 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/workOrders",
+      url: "api/workOrder",
       data: JSON.stringify(workOrder)
     });
   },
   getWorkOrders: function() {
     return $.ajax({
-      url: "api/workOrders",
+      url: "api/workOrder",
       type: "GET"
     });
   },
@@ -65,7 +65,7 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var workOrder = {
-    name: $workOrderName.val().trim(),
+    name: $workOrder.val().trim(),
     description: $workOrderDescription.val().trim()
   };
 
