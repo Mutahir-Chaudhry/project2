@@ -85,7 +85,6 @@ var handleFormSubmit = function(event) {
 // handleDeleteBtnClick is called when an workOrder's delete button is clicked
 // Remove the workOrder from the db and refresh the list
 var handleDeleteBtnClick = function() {
-  console.log("Trying to delete something");
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
