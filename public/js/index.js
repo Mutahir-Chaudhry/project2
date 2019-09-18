@@ -31,8 +31,8 @@ var API = {
 };
 
 // refreshworkOrders gets new workOrders from the db and repopulates the list
-var refreshworkOrders = function() {
-  API.getworkOrders().then(function(data) {
+var refreshWorkOrders = function() {
+  API.getWorkOrders().then(function(data) {
     var $workOrders = data.map(function(workOrder) {
       var $a = $("<a>")
         .text(workOrder.name)
@@ -74,8 +74,8 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveworkOrder(workOrder).then(function() {
-    refreshworkOrders();
+  API.saveWorkOrder(workOrder).then(function() {
+    refreshWorkOrders();
   });
 
   $workOrderName.val("");
@@ -85,15 +85,17 @@ var handleFormSubmit = function(event) {
 // handleDeleteBtnClick is called when an workOrder's delete button is clicked
 // Remove the workOrder from the db and refresh the list
 var handleDeleteBtnClick = function() {
+  console.log("Trying to delete something");
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteworkOrder(idToDelete).then(function() {
-    refreshworkOrders();
+  API.deleteWorkOrder(idToDelete).then(function() {
+    refreshWorkOrders();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $newWorkOrder.on("click", handleFormSubmit);
-$workOrderList.on("click", ".delete", handleDeleteBtnClick);
+// $workOrderList.on("click", "#delete", handleDeleteBtnClick);
+$(".delete").on("click", handleDeleteBtnClick);
