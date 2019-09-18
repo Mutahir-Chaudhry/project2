@@ -3,17 +3,34 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <h3>WorkOrders:</h3>
-        <ul id="workOrder-list" class="list-group">
-          {{#each workOrder}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="workOrder/{{this.id}}">{{this.name}}</a>
+        <br>
+        <br>
+        <br>
+        <h3>Work Orders:
+          <button class="btn btn-light float-right create">
+            {{!-- Temporarily adding text in A tag to navigate app until we make the handler for .create --}}
+            <a href="/newworkorder">New Work Order</a>
+          </button>
+        </h3>
+        <ul id="WorkOrder-List" class="list-group">
+          {{#each WorkOrder}}
+          {{!-- Add Style to this bitch please its ugly af--}}
+          <li data-id={{this.id}} class="list-group-item">
+            <p>#{{this.id}} Client Name: {{this.Name}} W.O Description: {{this.Description}} Finished:
+              {{this.Completed}}</p>
             <button class="btn btn-danger float-right delete" id={{this.id}}>ｘ</button>
+            {{!-- We're gonna try to use handlers as generally as we can by using classes and reusing that class multiple times --}}
+            <button class="btn btn-success float-left create" id={{this.id}}>
+              {{!-- Wrapping text in A tag to temporairly navigate app --}}
+              <a href="/newtimesheet">New Time Sheet</a>
+            </button>
+            {{!-- Current Work Order --}}
+            <button type="button" class="btn btn-info float-left get">
+              <a href="/workorder">View Work Order</a>
+            </button>
           </li>
           {{/each}}
         </ul>
-        <a href = "/newWorkOrder">Create a new Work Order -> </a>
       </div>
     </div>
   </div>

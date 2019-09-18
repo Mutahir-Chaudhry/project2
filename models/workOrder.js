@@ -1,15 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
   var WorkOrder = sequelize.define("WorkOrder", {
     // Giving the Author model a name of type STRING
-    name: {
+    Name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    description: {
+    Description: {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    completed: {
+    Completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }

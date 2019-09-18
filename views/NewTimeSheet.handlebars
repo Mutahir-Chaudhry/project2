@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="container col-6">
+        <br>
+        <br>
+        <br>
+        {{!-- Header --}}
+        <h2>
+            <strong>Time Table</strong>
+        </h2>
+        <div class="form-group">
+            <strong>Start Time</strong>: {{TimeSheet.StartTime}}
+            <br>
+            <br>
+            <strong>End Time</strong>: {{TimeSheet.EndTime}}
+            <br>
+            <br>
+            {{!-- Description Form --}}
+            <label for="TimeSheet-Description">
+                <strong>Time Sheet Description: </strong>
+            </label>
+            <textarea class="form-control" aria-describedby="TimeSheet-Description" id="TimeSheet-Description"
+                placeholder="Late/Absence Excuse, Lunch Break, Smoke Break, etc.">
+            </textarea>
+            <br>
+            {{!-- Drop Down Form --}}
+            <div class='form-field'>
+                <label for='employeeFilter'>
+                    <strong>Select Your Name Below</strong>:
+                </label>
+                <select id='employeeFilter' class='form-control'>
+                    <option></option>}
+                    {{#each shoes}}
+                    <option value="{{this}}">{{this.Employee}}</option>
+                    {{/each}}
+                </select>
+                <br>
+                {{!-- Button Group --}}
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <div class="row">
+                            {{!-- home button to work --}}
+                            <div class="col">
+                                <button class="btn btn-dark">
+                                    <a href="/">Home</a>
+                                </button>
+                            </div>
+                            {{!-- This button should be able to grab the createdAt colomn from our TimeSheet Model --}}
+                            <div class="col">
+                                <button class="btn btn-secondary">
+                                    Clock-In
+                                </button>
+                            </div>
+                            {{!-- This button should be able to grab the UpdatedAt colomn from out TimeSheet Model --}}
+                            <div class="col">
+                                <button class="btn btn-danger">
+                                    Clock-Out
+                                </button>
+                            </div>
+                            {{!-- get submit buttons to work --}}
+                            <div class="col">
+                                <button class="btn btn-success submit">Submit</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>

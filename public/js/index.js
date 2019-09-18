@@ -1,47 +1,46 @@
 // Get references to page elements
-var $workOrderName = $("#workOrder-name");
-var $workOrderDescription = $("#workOrder-description");
-var $workOrderList = $("#workOrder-list");
-//createWorkOrder button is new. I have no idea what im doing for the Jquery lool
-var $newWorkOrder = $("#newWorkOrderButton");
+var $WorkOrderName = $("#WorkOrder-Name");
+var $WorkOrderDescription = $("#WorkOrder-Description");
+var $WorkOrderList = $("#WorkOrder-List");
+var $SubmitButton = $(".submit");
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveWorkOrder: function(workOrder) {
+  saveWorkOrder: function(WorkOrder) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/workOrders",
-      data: JSON.stringify(workOrder)
+      url: "api/workorders",
+      data: JSON.stringify(WorkOrder)
     });
   },
   getWorkOrders: function() {
     return $.ajax({
-      url: "api/workOrders",
+      url: "api/workorders",
       type: "GET"
     });
   },
   deleteWorkOrder: function(id) {
     return $.ajax({
-      url: "api/workOrders/" + id,
+      url: "api/workorders/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshworkOrders gets new workOrders from the db and repopulates the list
+// This method gets newly added Work Orders from Toad DB then repopulates Work Order List
 var refreshWorkOrders = function() {
   API.getWorkOrders().then(function(data) {
-    var $workOrders = data.map(function(workOrder) {
+    var $WorkOrders = data.map(function(WorkOrder) {
       var $a = $("<a>")
-        .text(workOrder.name)
-        .attr("href", "/workOrder/" + workOrder.id);
+        .text(WorkOrder.Name)
+        .attr("href", "/workorder/" + WorkOrder.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": workOrder.id
+          "data-id": WorkOrder.id
         })
         .append($a);
 
@@ -54,37 +53,40 @@ var refreshWorkOrders = function() {
       return $li;
     });
 
-    $workOrderList.empty();
-    $workOrderList.append($workOrders);
+    $WorkOrderList.empty();
+    $WorkOrderList.append($WorkOrders);
   });
 };
 
 // handleFormSubmit is called whenever we submit a new workOrder
 // Save the new workOrder to the db and refresh the list
 var handleFormSubmit = function(event) {
+  //There should be a way to generalize this handler to be used on ALL submit buttons not just WO submit.
   event.preventDefault();
-
-  var workOrder = {
-    name: $workOrderName.val().trim(),
-    description: $workOrderDescription.val().trim()
+  var WorkOrder = {
+    //Change $NewWorkOrderButton to $SubmitButton, then add var TimeSheet = {startTime: $StartTime, endTime: $EndTime, Description: $TimeSheetDescription}
+    Name: $WorkOrderName.val().trim(),
+    Description: $WorkOrderDescription.val().trim()
   };
 
-  if (!(workOrder.name && workOrder.description)) {
-    alert("You must enter an workOrder text and description!");
+  if (!(WorkOrder.Name && WorkOrder.Description)) {
+    alert(
+      "Please enter your Clients name for this Work Order and add a Description of the Work Order!"
+    );
     return;
   }
 
-  API.saveWorkOrder(workOrder).then(function() {
+  API.saveWorkOrder(WorkOrder).then(function() {
     refreshWorkOrders();
   });
 
-  $workOrderName.val("");
-  $workOrderDescription.val("");
+  $WorkOrderName.val("");
+  $WorkOrderDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an workOrder's delete button is clicked
-// Remove the workOrder from the db and refresh the list
+// handleDeleteBtnClick is called when a Work Order's delete button is clicked
 var handleDeleteBtnClick = function() {
+  // Remove desired Work Order by ID from Toad DB and refresh Work Order List
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
@@ -95,6 +97,6 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$newWorkOrder.on("click", handleFormSubmit);
-// $workOrderList.on("click", "#delete", handleDeleteBtnClick);
-$(".delete").on("click", handleDeleteBtnClick);
+// Added class to submit button to make it reusable
+$SubmitButton.on("click", ".submit", handleFormSubmit);
+$WorkOrderList.on("click", ".delete", handleDeleteBtnClick);
