@@ -7,19 +7,19 @@ module.exports = function(app) {
     });
   });
 
-  // // Get all Time Sheets
-  // app.get("/api/TimeSheets", function(req, res) {
-  //   db.TimeSheet.findAll({}).then(function(results) {
-  //     res.json(results);
-  //   });
-  // });
+  // Get all Time Sheets
+  app.get("/api/TimeSheets", function(req, res) {
+    db.TimeSheet.findAll({}).then(function(results) {
+      res.json(results);
+    });
+  });
 
-  // // Get all Users
-  // app.get("/api/Users", function(req, res) {
-  //   db.User.findAll({}).then(function(results) {
-  //     res.json(results);
-  //   });
-  // });
+  // Get all Users
+  app.get("/api/Users", function(req, res) {
+    db.User.findAll({}).then(function(results) {
+      res.json(results);
+    });
+  });
 
   // Create a new example
   app.post("/api/workOrders", function(req, res) {
@@ -30,10 +30,10 @@ module.exports = function(app) {
 
   // Delete an example by id
   app.delete("/api/workOrders/:id", function(req, res) {
-    db.WorkOrder.destroy({ where: { id: req.params.id } }).then(function(
-      dbWorkOrders
-    ) {
-      res.json(dbWorkOrders);
-    });
+    db.dbWorkOrders
+      .destroy({ where: { id: req.params.id } })
+      .then(function(dbWorkOrders) {
+        res.json(dbWorkOrders);
+      });
   });
 };
