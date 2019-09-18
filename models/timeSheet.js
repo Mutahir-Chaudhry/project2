@@ -14,15 +14,15 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  TimeSheet.associate = function(models) {
-    // We're saying that a Post should belong to an Author
-    // A Post can't be created without an Author due to the foreign key constraint
-    TimeSheet.belongsTo(models.WorkOrder, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // TimeSheet.associate = function(models) {
+  //   // We're saying that a Post should belong to an Author
+  //   // A Post can't be created without an Author due to the foreign key constraint
+  //   TimeSheet.belongsTo(models.WorkOrder, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
 
   return TimeSheet;
 };

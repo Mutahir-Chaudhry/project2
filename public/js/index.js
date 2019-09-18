@@ -3,7 +3,7 @@ var $workOrderName = $("#workOrder-name");
 var $workOrderDescription = $("#workOrder-description");
 var $workOrderList = $("#workOrder-list");
 //createWorkOrder button is new. I have no idea what im doing for the Jquery lool
-var $newWorkOrder = $("#newWorkOrderButton");
+var $submitBtn = $("#submitForm");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveWorkOrder: function(workOrder) {
@@ -11,8 +11,8 @@ var API = {
       headers: {
         "Content-Type": "application/json"
       },
-      type: "POST",
       url: "api/workOrders",
+      type: "POST",
       data: JSON.stringify(workOrder)
     });
   },
@@ -31,8 +31,8 @@ var API = {
 };
 
 // refreshworkOrders gets new workOrders from the db and repopulates the list
-var refreshworkOrders = function() {
-  API.getworkOrders().then(function(data) {
+var refreshWorkOrders = function() {
+  API.getWorkOrders().then(function(data) {
     var $workOrders = data.map(function(workOrder) {
       var $a = $("<a>")
         .text(workOrder.name)
@@ -63,6 +63,7 @@ var refreshworkOrders = function() {
 // Save the new workOrder to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
+  console.log("hallo");
 
   var workOrder = {
     name: $workOrderName.val().trim(),
@@ -74,8 +75,8 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveworkOrder(workOrder).then(function() {
-    refreshworkOrders();
+  API.saveWorkOrder(workOrder).then(function() {
+    refreshWorkOrders();
   });
 
   $workOrderName.val("");
@@ -89,11 +90,11 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  API.deleteworkOrder(idToDelete).then(function() {
-    refreshworkOrders();
+  API.deleteWorkOrder(idToDelete).then(function() {
+    refreshWorkOrders();
   });
 };
 
 // Add event listeners to the submit and delete buttons
-$newWorkOrder.on("click", handleFormSubmit);
+$submitBtn.on("click", handleFormSubmit);
 $workOrderList.on("click", ".delete", handleDeleteBtnClick);
