@@ -11,52 +11,52 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/workorders",
+      url: "api/newworkorder",
       data: JSON.stringify(WorkOrder)
     });
   },
   getWorkOrders: function() {
     return $.ajax({
-      url: "api/workorders",
+      url: "api/allworkorders",
       type: "GET"
     });
   },
   deleteWorkOrder: function(id) {
     return $.ajax({
-      url: "api/workorders/" + id,
+      url: "api/workorder/" + id,
       type: "DELETE"
     });
   }
 };
 
 // This method gets newly added Work Orders from Toad DB then repopulates Work Order List
-var refreshWorkOrders = function() {
-  API.getWorkOrders().then(function(data) {
-    var $WorkOrders = data.map(function(WorkOrder) {
-      var $a = $("<a>")
-        .text(WorkOrder.Name)
-        .attr("href", "/workorder/" + WorkOrder.id);
+// var refreshWorkOrders = function() {
+//   API.getWorkOrders().then(function(data) {
+//     var $WorkOrders = data.map(function(WorkOrder) {
+//       var $a = $("<a>")
+//         .text(WorkOrder.Name)
+//         .attr("href", "/workorder/" + WorkOrder.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": WorkOrder.id
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": WorkOrder.id
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("Complete");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger delete")
+//         .text("Complete");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
-    $WorkOrderList.empty();
-    $WorkOrderList.append($WorkOrders);
-  });
-};
+//     $WorkOrderList.empty();
+//     $WorkOrderList.append($WorkOrders);
+//   });
+// };
 
 // handleFormSubmit is called whenever we submit a new workOrder
 // Save the new workOrder to the db and refresh the list
@@ -77,7 +77,7 @@ var handleFormSubmit = function(event) {
   }
 
   API.saveWorkOrder(WorkOrder).then(function() {
-    refreshWorkOrders();
+    // refreshWorkOrders();
   });
 
   $WorkOrderName.val("");
@@ -92,7 +92,7 @@ var handleDeleteBtnClick = function() {
     .attr("data-id");
 
   API.deleteWorkOrder(idToDelete).then(function() {
-    refreshWorkOrders();
+    // refreshWorkOrders();
   });
 };
 
@@ -100,3 +100,4 @@ var handleDeleteBtnClick = function() {
 // Added class to submit button to make it reusable
 $SubmitButton.on("click", ".submit", handleFormSubmit);
 $WorkOrderList.on("click", ".delete", handleDeleteBtnClick);
+// $(document).on("click", handleDeleteBtnClick);

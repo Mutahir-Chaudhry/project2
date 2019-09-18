@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="container">
+    <h2>
+      <strong>Work Order</strong>
+    </h2>
+
+    <ul id="WorkOrder-List" class="list-group">
+      <li data-id={{this.id}} class="list-group-item">
+        <div class="row">
+          <strong>#</strong> {{this.id}}
+        </div>
+        <div class="row">
+          <strong>Client Name</strong>: {{this.Name}}
+        </div>
+        <div class="row">
+          <strong>W.O Description</strong>: {{this.Description}}
+        </div>
+        <div class="row">
+          <strong>Completed</strong>: {{this.Completed}}
+        </div>
+      </li>
+    </ul>
+    {{!-- This button has a class of home we will use to take us back to --}}
+    <div class="row">
+      <div class="col">
+        {{!-- Display Index --}}
+        <button class="btn btn-primary home">
+          <a href="/">Home</a>
+        </button>
+      </div>
+      <div class="col">
+        {{!-- Change value of BOOLEAN to 1 for true, refresh WorkOrder, display Index --}}
+        <button class="btn btn-primary complete">Complete This Work Order</button>
+      </div>
+      <div class="col">
+        {{!-- Submit Button --}}
+        <button class="btn btn-primary submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>

@@ -19,12 +19,12 @@ module.exports = function(app) {
       });
     });
   });
-  //Load WorkOrder Model by id, then display WorkOrder.handlebars
-  app.get("/workorder/:id", function(req, res) {
+  //Load WorkOrder Model by id, then display ViewWorkOrder.handlebars
+  app.get("/viewworkorder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
       results
     ) {
-      res.render("WorkOrder", {
+      res.render("ViewWorkOrder", {
         WorkOrder: results
       });
     });
@@ -37,14 +37,6 @@ module.exports = function(app) {
         msg:
           "Clock-In, or Clock-Out, then leave a short message about your work day.",
         TimeSheet: results
-      });
-    });
-  });
-  // Load WorkOrder Model, then display WorkOrder.handlebars
-  app.get("/workorder", function(req, res) {
-    db.WorkOrder.findAll({}).then(function(results) {
-      res.render("WorkOrder", {
-        WorkOrder: results
       });
     });
   });

@@ -1,4 +1,4 @@
-<div id="home">
+<div class="container-fluid">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
@@ -7,27 +7,52 @@
         <br>
         <br>
         <h3>Work Orders:
-          <button class="btn btn-light float-right create">
+          <button class="btn btn-dark float-right create">
             {{!-- Temporarily adding text in A tag to navigate app until we make the handler for .create --}}
             <a href="/newworkorder">New Work Order</a>
           </button>
         </h3>
+        {{!-- Work Order List --}}
         <ul id="WorkOrder-List" class="list-group">
+          {{!-- For Each Loop, Looping through --}}
           {{#each WorkOrder}}
-          {{!-- Add Style to this bitch please its ugly af--}}
+          {{!--Work Order Data--}}
           <li data-id={{this.id}} class="list-group-item">
-            <p>#{{this.id}} Client Name: {{this.Name}} W.O Description: {{this.Description}} Finished:
-              {{this.Completed}}</p>
-            <button class="btn btn-danger float-right delete" id={{this.id}}>ｘ</button>
+            <div class="row">
+              <strong>#</strong> {{this.id}}
+            </div>
+            <div class="row">
+              <strong>Client Name</strong>: {{this.Name}}
+            </div>
+            <div class="row">
+              <strong>W.O Description</strong>: {{this.Description}}
+            </div>
+            <div class="row">
+              <strong>Completed</strong>: {{this.Completed}}
+            </div>
+
             {{!-- We're gonna try to use handlers as generally as we can by using classes and reusing that class multiple times --}}
-            <button class="btn btn-success float-left create" id={{this.id}}>
-              {{!-- Wrapping text in A tag to temporairly navigate app --}}
-              <a href="/newtimesheet">New Time Sheet</a>
-            </button>
-            {{!-- Current Work Order --}}
-            <button type="button" class="btn btn-info float-left get">
-              <a href="/workorder">View Work Order</a>
-            </button>
+
+            {{!-- This is our dynamically created row of buttons --}}
+            <div class="row">
+              <div class="col">
+                {{!-- New Time Sheet html route --}}
+                <button class="btn btn-success create">
+                  {{!-- Wrapping text in A tag to temporairly navigate app --}}
+                  <a href="/newtimesheet">New Time Sheet</a>
+                </button>
+              </div>
+              <div class="col">
+                {{!-- Delete Button Works --}}
+                <button class="btn btn-danger delete" data-id={{this.id}}>Delete Work Order</button>
+              </div>
+              <div class="col">
+                {{!-- View Selected Work Order by ID --}}
+                <button type="button" class="btn btn-info get">
+                  <a href="/viewworkorder/1">View Work Order</a>
+                </button>
+              </div>
+            </div>
           </li>
           {{/each}}
         </ul>
