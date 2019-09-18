@@ -4,6 +4,19 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
+        <form class="clearfix mb-4">
+          <div class="form-group">
+            <label for="workOrder-name">WorkOrder Name</label>
+            <input type="name" id="workOrder-name" class="form-control" aria-describedby="workOrder-name"
+              placeholder="Enter WorkOrder name">
+          </div>
+          <div class="form-group">
+            <label for="workOrder-description">WorkOrder Description</label>
+            <textarea class="form-control" id="workOrder-description" aria-describedby="workOrder-description"
+              placeholder="Enter WorkOrder Description"></textarea>
+          </div>
+          <button id="submitForm" class="btn btn-primary float-right">Submit</button>
+        </form>
         <h3>WorkOrders:</h3>
         <ul id="workOrder-list" class="list-group">
           {{#each workOrder}}
@@ -17,7 +30,5 @@
       </div>
     </div>
   </div>
-</div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

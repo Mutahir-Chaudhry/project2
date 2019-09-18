@@ -8,18 +8,14 @@ module.exports = function(sequelize, DataTypes) {
     description: {
       type: DataTypes.TEXT,
       allowNull: false
-    },
-    completed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
     }
   });
 
-  WorkOrder.associate = models => {
-    WorkOrder.hasMany(models.TimeSheet, {
-      onDelete: "cascade"
-    });
-  };
+  // WorkOrder.associate = models => {
+  //   WorkOrder.hasMany(models.TimeSheet, {
+  //     onDelete: "cascade"
+  //   });
+  // };
 
   return WorkOrder;
 };
