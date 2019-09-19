@@ -4,13 +4,14 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <br>
-        <br>
-        <br>
+       
         <h3>Work Orders:
-          <button class="btn btn-dark float-right create">
-            {{!-- Temporarily adding text in A tag to navigate app until we make the handler for .create --}}
-            <a href="/newworkorder">New Work Order</a>
-          </button>
+          <form action="newWorkOrder">
+            <button style="margin-top: -33px" class="btn btn-dark float-right create">New Work Order
+              {{!-- Temporarily adding text in A tag to navigate app until we make the handler for .create --}}
+              {{!-- <a href="/newworkorder"></a> --}}
+            </button>
+          </form>
         </h3>
         {{!-- Work Order List --}}
         <ul id="WorkOrder-List" class="list-group">
@@ -37,20 +38,23 @@
             <div class="row">
               <div class="col">
                 {{!-- New Time Sheet html route --}}
-                <button class="btn btn-success create">
+                <form action="NewTimeSheet">
                   {{!-- Wrapping text in A tag to temporairly navigate app --}}
-                  <a href="/newtimesheet">New Time Sheet</a>
-                </button>
+                  <button type="submit" class="btn btn-success">New Timesheets </button>
+                </form>
               </div>
               <div class="col">
                 {{!-- Delete Button Works --}}
-                <button class="btn btn-danger delete">Delete Work Order</button>
+                <form>
+                  <button class="btn btn-danger delete" data-id={{this.id}}>Delete Work Order</button>
+                </form>
+
               </div>
               <div class="col">
                 {{!-- View Selected Work Order by ID --}}
-                <button class="btn btn-info get">
-                  <a href="/viewworkorder/: " +{{this.id}}>View Work Order</a>
-                </button>
+                <form action="ViewWorkOrder">
+                  <button type="submit" class="btn btn-primary get">View Work Order</button>
+                </form>
               </div>
             </div>
           </li>
