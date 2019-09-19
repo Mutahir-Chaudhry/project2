@@ -53,6 +53,14 @@ module.exports = function(app) {
       res.json(results);
     });
   });
+  // Find One User by ID
+  app.get("/api/viewworkorder/:id", function(req, res) {
+    db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
+      results
+    ) {
+      res.json(results);
+    });
+  });
   // Delete Work Order by ID
   app.delete("/api/workorder/:id", function(req, res) {
     db.WorkOrder.destroy({ where: { id: req.params.id } }).then(function(
