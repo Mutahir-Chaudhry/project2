@@ -44,12 +44,12 @@
               </div>
               <div class="col">
                 {{!-- Delete Button Works --}}
-                <button class="btn btn-danger delete" data-id={{this.id}}>Delete Work Order</button>
+                <button class="btn btn-danger delete">Delete Work Order</button>
               </div>
               <div class="col">
                 {{!-- View Selected Work Order by ID --}}
-                <button type="button" class="btn btn-info get">
-                  <a href="/viewworkorder/1">View Work Order</a>
+                <button class="btn btn-info get">
+                  <a href="/viewworkorder/: " +{{this.id}}>View Work Order</a>
                 </button>
               </div>
             </div>
