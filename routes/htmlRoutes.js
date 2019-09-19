@@ -1,52 +1,50 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Load WorkOrder Model, then display Index.handlebars
   app.get("/", function(req, res) {
     db.WorkOrder.findAll({}).then(function(results) {
-      res.render("index", {
-        msg: "Welcome!",
-        workOrder: results
+      res.render("Index", {
+        msg:
+          "Welcome! Here are all your existing Work Orders. Better get to work!",
+        WorkOrder: results
       });
     });
   });
-  //Load New Work Order page
-  app.get("/newWorkOrder", function(req, res) {
-    res.render("newWorkOrder", {
-      msg: "Create your new Work Order below!"
+  // Load NewWorkOrder model, then display NewWorkOrder.handlebars
+  app.get("/newworkorder", function(req, res) {
+    db.WorkOrder.findAll({}).then(function(results) {
+      res.render("NewWorkOrder", {
+        WorkOrder: results
+      });
     });
   });
-  //Load work order by id
-  app.get("/workorder/:id", function(req, res) {
+  //Load WorkOrder Model by id, then display ViewWorkOrder.handlebars
+  app.get("/viewworkorder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
       results
     ) {
-      res.render("workorder", {
-        workOrder: results
+      res.render("ViewWorkOrder", {
+        WorkOrder: results
       });
     });
   });
 
-  // Load Time Sheet Model
-  app.get("/timesheet", function(req, res) {
+  // Load TimeSheet Model, then display TimeSheet.handlebars
+  app.get("/newtimesheet", function(req, res) {
     db.TimeSheet.findAll({}).then(function(results) {
-      res.render("TimeSheet", {
+      res.render("NewTimeSheet", {
+        msg:
+          "Clock-In, or Clock-Out, then leave a short message about your work day.",
         TimeSheet: results
       });
     });
   });
-  // Load workOrder model
-  app.get("/workorder", function(req, res) {
-    db.WorkOrder.findAll({}).then(function(results) {
-      res.render("workOrder", {
-        workOrder: results
-      });
-    });
-  });
-  // Load Main Time Sheet
+
+  // Load TimeSheet Model, then display MainTimeSheet.handlebars
   app.get("/maintimesheet", function(req, res) {
     db.TimeSheet.findAll({}).then(function(results) {
-      res.render("mainTimeSheet", {
+      res.render("MainTimeSheet", {
         TimeSheet: results
       });
     });

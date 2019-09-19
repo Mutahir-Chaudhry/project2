@@ -5,17 +5,27 @@
                 <h2>{{msg}}</h2>
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label for="name">Client Name: </label>
-                        <input type="text" class="form-control name" aria-describedby="name"
-                            placeholder="Enter Client's Name Here">
+                        <label for="WorkOrder-Name">Client Name: </label>
+                        <input type="text" class="form-control" id="WorkOrder-Name" aria-describedby="WorkOrder-Name"
+                            placeholder="Client Name">
                     </div>
                     <div class="form-group">
-                        <label for="description">Work Order Description: </label>
-                        <textarea class="form-control description" aria-describedby="description"
-                            placeholder="Enter Description of Work Order"></textarea>
+                        <label for="WorkOrder-Description">Work Order Description: </label>
+                        <textarea class="form-control" aria-describedby="WorkOrder-Description"
+                            id="WorkOrder-Description"
+                            placeholder="Labor, Material, Estimated Hours, Special Requests, Due Date, etc."></textarea>
                     </div>
-                    <a href = "/"> Back to Home</a>
-                    <button class="btn btn-primary float-right submit">Submit</button>
+                    {{!-- Turn this A tag in to a functioning REUSABLE home button --}}
+                    <form action="index.handlebars">
+                        <button>
+                            <button class="btn btn-secondary home">Back to Home</button>
+                        </button>
+                    </form>
+
+                    {{!-- Get this submit button working, get all of them working --}}
+                    <form action="index.handlebars">
+                        <button class="btn btn-success submit">Submit</button>
+                    </form>
                 </form>
             </div>
         </div>
