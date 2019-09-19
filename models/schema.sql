@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS Toad;
 CREATE DATABASE Toad;
-USE Toad;
+
 
 
 
