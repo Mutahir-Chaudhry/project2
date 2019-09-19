@@ -15,6 +15,7 @@ module.exports = function(app) {
   app.get("/newworkorder", function(req, res) {
     db.WorkOrder.findAll({}).then(function(results) {
       res.render("NewWorkOrder", {
+        msg: "Create your new Work Order below:",
         WorkOrder: results
       });
     });

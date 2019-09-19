@@ -1,13 +1,14 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all Time Sheets
+  // ------------------------------------------------ TIME SHEET ROUTES --------------------------------------------------------------
+  // Find All Time Sheets
   app.get("/api/alltimesheets", function(req, res) {
     db.TimeSheet.findAll({}).then(function(results) {
       res.json(results);
     });
   });
-  // Create new Time Sheet
+  // Create New Time Sheet
   app.post("/api/newtimesheet", function(req, res) {
     db.TimeSheet.post(req.body).then(function(results) {
       res.json(results);
@@ -21,6 +22,7 @@ module.exports = function(app) {
       res.json(results);
     });
   });
+  // ------------------------------------------------ USER ROUTES --------------------------------------------------------------
   // Get all Users
   app.get("/api/allusers", function(req, res) {
     db.User.findAll({}).then(function(results) {
@@ -33,6 +35,7 @@ module.exports = function(app) {
       res.json(results);
     });
   });
+  // ------------------------------------------------ WORK ORDER ROUTES --------------------------------------------------------------
   //Get all Work Orders
   app.get("/api/allworkorders", function(req, res) {
     db.WorkOrder.findAll({}).then(function(results) {
@@ -50,14 +53,6 @@ module.exports = function(app) {
   // Create New Work Order
   app.post("/api/newworkorder", function(req, res) {
     db.WorkOrder.post(req.body).then(function(results) {
-      res.json(results);
-    });
-  });
-  // Find One User by ID
-  app.get("/api/viewworkorder/:id", function(req, res) {
-    db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
-      results
-    ) {
       res.json(results);
     });
   });
