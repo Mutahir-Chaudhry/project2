@@ -5,6 +5,7 @@
     </h2>
     <h4>Work Order Info:</h4>
     <ul id="WorkOrder-List" class="list-group">
+      {{#with WorkOrder}}
       <div data-id={{this.id}} class="container list-group-items">
         <div class="row">
           <strong>#</strong> {{this.id}}
@@ -22,6 +23,7 @@
           <strong>Completed</strong>: {{this.Completed}}
         </div>
       </div>
+      {{/with}}
     </ul>
     <br>
     <br>
@@ -30,11 +32,11 @@
     <ul id="TimeSheet-List" class="list-group">
       <div data-id={{this.id}} class="container list-group-items">
         <div class="row">
-          <strong>Employee</strong>: 
+          <strong>Employee</strong>:
         </div>
         <br>
         <div class="row">
-          <strong>Start TIme</strong>: 
+          <strong>Start TIme</strong>:
         </div>
         <br>
         <div class="row">
@@ -44,7 +46,6 @@
         <div class="row">
           <strong>Description</strong>:
         </div>
-      </div>
     </ul>
     <br>
     <br>
@@ -54,24 +55,15 @@
         {{!-- Display Index --}}
         <form action="/">
           <button class="btn btn-primary home">Home
-
           </button>
         </form>
       </div>
       <div class="col">
-        {{!-- Change value of BOOLEAN to 1 for true, refresh WorkOrder, display Index --}}
-        <button class="btn btn-primary complete">Complete This Work Order</button>
-      </div>
-      <div class="col">
         {{!-- Submit Button --}}
         <form action="/">
-          <button class="btn btn-success submit">Submit</button>
+          <button class="btn btn-success submit">Complete this Work Order</button>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
