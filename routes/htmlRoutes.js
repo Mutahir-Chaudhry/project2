@@ -41,14 +41,14 @@ module.exports = function(app) {
     });
   });
 
-  // Load TimeSheet Model, then display MainTimeSheet.handlebars
-  app.get("/maintimesheet", function(req, res) {
-    db.TimeSheet.findAll({}).then(function(results) {
-      res.render("MainTimeSheet", {
-        TimeSheet: results
-      });
-    });
-  });
+  // // Load TimeSheet Model, then display MainTimeSheet.handlebars
+  // app.get("/viewworkorder", function(req, res) {
+  //   db.TimeSheet.findAll({}).then(function(results) {
+  //     res.render("ViewWorkOrder", {
+  //       TimeSheet: results
+  //     });
+  //   });
+  // });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

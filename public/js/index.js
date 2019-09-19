@@ -2,7 +2,7 @@
 var $WorkOrderName = $("#WorkOrder-Name");
 var $WorkOrderDescription = $("#WorkOrder-Description");
 var $WorkOrderList = $("#WorkOrder-List");
-var $SubmitButton = $(".submit");
+var $SubmitWorkOrder = $("#submit");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveWorkOrder: function(WorkOrder) {
@@ -40,22 +40,60 @@ var API = {
 var refreshWorkOrders = function() {
   API.getWorkOrders().then(function(data) {
     var $WorkOrders = data.map(function(WorkOrder) {
-      var $a = $("<a>")
-        .text(WorkOrder.Name)
-        .attr("href", "/workorder/" + WorkOrder.id);
+      var $FirstDiv = $("<div>").attr({ class: "row" });
+
+      var $id = $("<strong>")
+        .text("#")
+        .attr(WorkOrder.id)
+        .append($id);
+
+      var $SecondDiv = $("<div>").attr({ class: "row" });
+
+      var $ClientName = $("<strong>")
+        .text("Client Name:")
+        .attr(WorkOrder.Name)
+        .append($ClientName);
+
+      var $ThirdDiv = $("<div>").attr({
+        class: "row"
+      });
+
+      var $Description = $("<strong>")
+        .text("W.O Description:")
+        .attr(WorkOrder.Description)
+        .append($Description);
+
+      var $FourthDiv = $("<div>").attr({ class: "row" });
+
+      var $Completed = $("<strong>")
+        .text("Completed:")
+        .attr(WorkOrder.Completed)
+        .append($Completed);
 
       var $li = $("<li>")
         .attr({
-          class: "list-group-item",
+          class: "list-group-items",
           "data-id": WorkOrder.id
         })
-        .append($a);
+        .append($FirstDiv)
+        .append($SecondDiv)
+        .append($ThirdDiv)
+        .append($FourthDiv);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger delete")
-        .text("Complete");
+      // var $ButtonsRow = $("<div>").attr({ class: "row" });
 
-      $li.append($button);
+      // var $FirstButtonCol = $("<div>")
+      //   .attr({ class: "col" })
+      //   .append($ButtonsRow);
+
+      // var $DeleteButton = $("<button>")
+      //   .addClass("btn btn-danger delete")
+      //   .text("Delete Work Order")
+      //   .append($FirstButtonCol);
+
+      // var $NewTimeSheetButton = $("<button>")
+      //   .addClass("btn btn-success")
+      //   .text("Time Sheet");
 
       return $li;
     });
@@ -84,7 +122,7 @@ var handleFormSubmit = function(event) {
   }
 
   API.saveWorkOrder(WorkOrder).then(function() {
-    // refreshWorkOrders();
+    refreshWorkOrders();
   });
 
   $WorkOrderName.val("");
@@ -101,12 +139,13 @@ var handleDeleteBtnClick = function() {
   API.deleteWorkOrder(idToDelete).then(function() {
     refreshWorkOrders();
   });
+  console.log("Delete bnutton");
 };
 
 // Add event listeners to the submit and delete buttons
 // Added class to submit button to make it reusable
-$SubmitButton.on("click", ".submit", handleFormSubmit);
+$SubmitWorkOrder.on("click", "#submit", handleFormSubmit);
 $WorkOrderList.on("click", ".delete", handleDeleteBtnClick);
-$(".delete").on("click", () => {
-  console.log("Delete BUtton");
-});
+// $(".delete").on("click", () => {
+//   console.log("Delete BUtton");
+// });

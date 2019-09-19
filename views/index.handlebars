@@ -1,24 +1,24 @@
-<div class="container-fluid">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <br>
-       
-        <h3>Work Orders:
-          <form action="newWorkOrder">
-            <button style="margin-top: -33px" class="btn btn-dark float-right create">New Work Order
-              {{!-- Temporarily adding text in A tag to navigate app until we make the handler for .create --}}
-              {{!-- <a href="/newworkorder"></a> --}}
-            </button>
-          </form>
-        </h3>
-        {{!-- Work Order List --}}
-        <ul id="WorkOrder-List" class="list-group">
-          {{!-- For Each Loop, Looping through --}}
-          {{#each WorkOrder}}
-          {{!--Work Order Data--}}
-          <li data-id={{this.id}} class="list-group-item">
+<div id="home">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 offset-2">
+
+          <h1>{{msg}}</h1>
+          <br>
+          <br>
+          <div class="container">
+            <form action="newWorkOrder">
+              <button style="margin-top: -33px" class="btn btn-dark float-right create">New Work Order
+              </button>
+            </form>
+          </div>
+          <ul id="WorkOrder-List" class="list-group">
+
+            {{#each WorkOrder}}
+
+            {{!-- Work Order Data --}}
+
             <div class="row">
               <strong>#</strong> {{this.id}}
             </div>
@@ -32,38 +32,40 @@
               <strong>Completed</strong>: {{this.Completed}}
             </div>
 
-            {{!-- We're gonna try to use handlers as generally as we can by using classes and reusing that class multiple times --}}
-
-            {{!-- This is our dynamically created row of buttons --}}
+            {{!-- Row of Buttons --}}
             <div class="row">
+
+              {{!-- Delete button --}}
               <div class="col">
-                {{!-- New Time Sheet html route --}}
+                <button class="btn btn-danger delete" data-id="{{WorkOrder.id}}">Delete Work Order</button>
+              </div>
+
+              {{!-- New Time Sheet html route --}}
+              <div class="col">
                 <form action="NewTimeSheet">
                   {{!-- Wrapping text in A tag to temporairly navigate app --}}
-                  <button type="submit" class="btn btn-success">New Timesheets </button>
+                  <button type="submit" class="btn btn-success">Track Time </button>
                 </form>
               </div>
-              <div class="col">
-                {{!-- Delete Button Works --}}
-                <form>
-                  <button class="btn btn-danger delete" data-id={{this.id}}>Delete Work Order</button>
-                </form>
 
-              </div>
+              {{!-- View Selected Work Order by ID --}}
               <div class="col">
-                {{!-- View Selected Work Order by ID --}}
-                <form action="ViewWorkOrder">
+                <form action="/ViewWorkOrder">
                   <button type="submit" class="btn btn-primary get">View Work Order</button>
                 </form>
               </div>
             </div>
-          </li>
-          {{/each}}
-        </ul>
+
+
+
+            {{/each}}
+
+          </ul>
+
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
