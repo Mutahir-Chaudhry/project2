@@ -47,7 +47,6 @@ var API = {
 // Save the new workOrder to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
   var WorkOrder = {
     Name: $WorkOrderName.val().trim(),
     Description: $WorkOrderDescription.val().trim()
@@ -59,7 +58,7 @@ var handleFormSubmit = function(event) {
   }
 
   API.saveWorkOrder(WorkOrder).then(function() {
-    location.reload();
+    console.log(location.port());
   });
 
   $WorkOrderName.val("");

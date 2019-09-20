@@ -18,16 +18,6 @@
                     </div>
                     <button id="NewWorkOrder-Button" class="btn btn-primary float-right submit">Submit</button>
                 </form>
-                <h3>WorkOrders:</h3>
-                <ul id="WorkOrder-List" class="list-group">
-                    {{#each WorkOrder}}
-                    <li data-id="{{this.id}}" class="list-group-item">
-                        <a href="/workorder/{{this.id}}">{{this.name}}</a>
-                        <a href="/newtimesheet/">Add Time</a>
-                        <button class="btn btn-danger float-right delete">ｘ</button>
-                    </li>
-                    {{/each}}
-                </ul>
             </div>
         </div>
     </div>
