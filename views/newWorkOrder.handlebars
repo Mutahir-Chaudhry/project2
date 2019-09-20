@@ -2,34 +2,36 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <h2>{{msg}}</h2>
+                <h1>{{msg}}</h1>
+                <h2>This is our Home Page!</h2>
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label for="WorkOrder-Name">Client Name: </label>
-                        <input type="text" class="form-control" id="WorkOrder-Name" aria-describedby="WorkOrder-Name"
-                            placeholder="Client Name">
+                        <label for="WorkOrder-Name">workOrder Text</label>
+                        <input type="text" id="WorkOrder-Name" class="form-control" aria-describedby="WorkOrder-Name"
+                            placeholder="Enter Work Order Name">
                     </div>
                     <div class="form-group">
-                        <label for="WorkOrder-Description">Work Order Description: </label>
-                        <textarea class="form-control" aria-describedby="WorkOrder-Description"
-                            id="WorkOrder-Description"
-                            placeholder="Labor, Material, Estimated Hours, Special Requests, Due Date, etc."></textarea>
+                        <label for="WorkOrder-Description">Work Order Description</label>
+                        <textarea class="form-control" id="WorkOrder-Description"
+                            aria-describedby="WorkOrder-Description"
+                            placeholder="Enter Work Order Description"></textarea>
                     </div>
-                    {{!-- Turn this A tag in to a functioning REUSABLE home button --}}
-                    <form action="/">
-                        <button class="btn btn-success submit">Back To Home</button>
-                    </form>
-
-                    {{!-- Get this submit button working, get all of them working --}}
-                    <form action="/">
-                        <button class="btn btn-success submit">Submit</button>
-                    </form>
+                    <button id="NewWorkOrder-Button" class="btn btn-primary float-right submit">Submit</button>
                 </form>
+                <h3>WorkOrders:</h3>
+                <ul id="WorkOrder-List" class="list-group">
+                    {{#each WorkOrder}}
+                    <li data-id="{{this.id}}" class="list-group-item">
+                        <a href="/workorder/{{this.id}}">{{this.name}}</a>
+                        <a href="/newtimesheet/">Add Time</a>
+                        <button class="btn btn-danger float-right delete">ｘ</button>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

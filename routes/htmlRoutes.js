@@ -4,7 +4,7 @@ module.exports = function(app) {
   // Load WorkOrder Model, then display Index.handlebars
   app.get("/", function(req, res) {
     db.WorkOrder.findAll({}).then(function(results) {
-      res.render("Index", {
+      res.render("index", {
         msg:
           "Welcome! Here are all your existing Work Orders. Better get to work!",
         WorkOrder: results
@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
   });
   //Load WorkOrder Model by id, then display ViewWorkOrder.handlebars
-  app.get("/ViewWorkOrder/:id", function(req, res) {
+  app.get("/viewworkorder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
       results
     ) {

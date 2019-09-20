@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     Completed: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      notNullDefault: false
     }
   });
 
