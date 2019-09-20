@@ -3,9 +3,11 @@ var $WorkOrderName = $("#WorkOrder-Name");
 var $WorkOrderDescription = $("#WorkOrder-Description");
 var $WorkOrderList = $("#WorkOrder-List");
 var $NewWorkOrder = $("#NewWorkOrder-Button");
+// var $TimeSheetDescription = $("TimeSheet-Description");
+// var $TimeSheetForm = $("#TimeSheetForm");
 // var $ViewWorkOrder = $("#viewWorkOrder");
 // The API object contains methods for each kind of request we'll make
-console.log("I'm connected");
+
 var API = {
   saveWorkOrder: function(WorkOrder) {
     return $.ajax({
@@ -19,7 +21,7 @@ var API = {
   },
   getWorkOrders: function() {
     return $.ajax({
-      url: "/api/allworkorders",
+      url: "/api/workorder",
       type: "GET"
     });
   },
@@ -29,20 +31,34 @@ var API = {
       type: "DELETE"
     });
   },
-  getTimeSheets: function() {
+  saveTimeSheet: function(TimeSheet) {
     return $.ajax({
-      url: "/api/alltimesheets",
-      type: "GET"
-    });
-  },
-  getOneWorkOrder: function(id) {
-    return $.ajax({
-      url: "/api/workorder/" + id,
-      type: "GET"
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "/api/timesheet",
+      data: JSON.stringify(TimeSheet)
     });
   }
 };
+// var handleTimeSheetSubmit = function(event) {
+//   event.preventDefault();
+//   var TimeSheet = {
+//     Description: $TimeSheetDescription.val().trim()
+//   };
 
+//   if (!TimeSheet.Description) {
+//     alert("You must enter your hours Time Sheet Description!");
+//     return;
+//   }
+
+//   API.saveTimeSheet(TimeSheet).then(function() {
+//     console.log(location.port());
+//   });
+
+//   $TimeSheetDescription.val("");
+// };
 // handleFormSubmit is called whenever we submit a new workOrder
 // Save the new workOrder to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -72,11 +88,11 @@ var handleDeleteBtnClick = function() {
   var idToDelete = $(this).attr("data-id");
 
   API.deleteWorkOrder(idToDelete).then(function() {
-    // refreshWorkOrders();
     location.reload();
   });
 };
 
+//On Click Listeners
+// $TimeSheetForm.on("click", handleTimeSheetSubmit);
 $NewWorkOrder.on("click", handleFormSubmit);
 $WorkOrderList.on("click", ".delete", handleDeleteBtnClick);
-// $WorkOrderList.on("click", ".viewWorkOrder", handleViewWorkOrderBtn);

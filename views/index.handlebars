@@ -7,8 +7,8 @@
           <br>
           <br>
           <div class="container">
-            <form action="newWorkOrder">
-              <button style="margin-top: -33px" class="btn btn-dark float-right create">New Work Order
+            <form action="NewWorkOrder">
+              <button class="btn btn-dark float-right ">New Work Order
               </button>
             </form>
           </div>
@@ -50,19 +50,14 @@
               {{!-- View Selected Work Order by ID --}}
               <div class="col">
                 {{!-- we're just gonna do a tag href --}}
-                <form action="/ViewWorkOrder/" + data-id="{{this.id}}">
-                  <button type="submit" class="btn btn-primary viewWorkOrder" data-id="{{this.id}}">View Work
+                <form action="/viewworkorder/ + {{this.id}}">
+                  <button type="submit" class="btn btn-primary" data-id="{{this.id}}">View Work
                     Order</button>
                 </form>
               </div>
             </div>
-
-
-
             {{/each}}
-
           </ul>
-
         </div>
       </div>
     </div>

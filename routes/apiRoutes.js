@@ -3,13 +3,13 @@ var db = require("../models");
 module.exports = function(app) {
   // ------------------------------------------------ TIME SHEET ROUTES --------------------------------------------------------------
   // Find All Time Sheets
-  app.get("/api/alltimesheets", function(req, res) {
+  app.get("/api/timesheet", function(req, res) {
     db.TimeSheet.findAll({}).then(function(results) {
       res.json(results);
     });
   });
   // Create New Time Sheet
-  app.post("/api/newtimesheet", function(req, res) {
+  app.post("/api/timesheet", function(req, res) {
     db.TimeSheet.post(req.body).then(function(results) {
       res.json(results);
     });
@@ -24,7 +24,7 @@ module.exports = function(app) {
   });
   // ------------------------------------------------ USER ROUTES --------------------------------------------------------------
   // Get all Users
-  app.get("/api/allusers", function(req, res) {
+  app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(results) {
       res.json(results);
     });
@@ -37,7 +37,7 @@ module.exports = function(app) {
   });
   // ------------------------------------------------ WORK ORDER ROUTES --------------------------------------------------------------
   //Get all Work Orders
-  app.get("/api/allworkorders", function(req, res) {
+  app.get("/api/workorder", function(req, res) {
     db.WorkOrder.findAll({}).then(function(results) {
       res.json(results);
     });
