@@ -51,8 +51,8 @@ module.exports = function(app) {
     });
   });
   // Create New Work Order
-  app.post("/api/newworkorder", function(req, res) {
-    db.WorkOrder.post(req.body).then(function(results) {
+  app.post("/api/workorder", function(req, res) {
+    db.WorkOrder.create(req.body).then(function(results) {
       res.json(results);
     });
   });

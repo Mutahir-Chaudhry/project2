@@ -3,43 +3,59 @@ var $WorkOrderName = $("#WorkOrder-Name");
 var $WorkOrderDescription = $("#WorkOrder-Description");
 var $WorkOrderList = $("#WorkOrder-List");
 var $SubmitWorkOrder = $("#submit");
+// var $ViewWorkOrder = $("#viewWorkOrder");
 // The API object contains methods for each kind of request we'll make
+console.log("I'm connected");
 var API = {
-  saveWorkOrder: function(WorkOrder) {
+  saveWorkOrder: function (WorkOrder) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/newworkorder",
+      url: "/api/workorder",
       data: JSON.stringify(WorkOrder)
     });
   },
-  getWorkOrders: function() {
+  getWorkOrders: function () {
     return $.ajax({
-      url: "api/allworkorders",
+      url: "/api/allworkorders",
       type: "GET"
     });
   },
-  deleteWorkOrder: function(id) {
+  deleteWorkOrder: function (id) {
     return $.ajax({
-      url: "api/workorder/" + id,
+      url: "/api/workorder/" + id,
       type: "DELETE"
     });
   },
-  getTimeSheets: function() {
+  getTimeSheets: function () {
     return $.ajax({
-      url: "api/alltimesheets",
+      url: "/api/alltimesheets",
+      type: "GET"
+    });
+  },
+  getOneWorkOrder: function (id) {
+    return $.ajax({
+      url: "/api/workorder/" + id,
       type: "GET"
     });
   }
 };
-// Time to do time sheets
+
+var HTML = {
+  getWorkOrder: function(id) {
+    $.ajax({
+      url: "/viewworkorder/" + id,
+      type: "GET"
+    }).then(console.log(id));
+  }
+};
 
 // This method gets newly added Work Orders from Toad DB then repopulates Work Order List
-var refreshWorkOrders = function() {
-  API.getWorkOrders().then(function(data) {
-    var $WorkOrders = data.map(function(WorkOrder) {
+var refreshWorkOrders = function () {
+  API.getWorkOrders().then(function (data) {
+    var $WorkOrders = data.map(function (WorkOrder) {
       var $FirstDiv = $("<div>").attr({ class: "row" });
 
       var $id = $("<strong>")
@@ -105,7 +121,7 @@ var refreshWorkOrders = function() {
 
 // handleFormSubmit is called whenever we submit a new workOrder
 // Save the new workOrder to the db and refresh the list
-var handleFormSubmit = function(event) {
+var handleFormSubmit = function (event) {
   //There should be a way to generalize this handler to be used on ALL submit buttons not just WO submit.
   event.preventDefault();
   var WorkOrder = {
@@ -121,7 +137,7 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveWorkOrder(WorkOrder).then(function() {
+  API.saveWorkOrder(WorkOrder).then(function () {
     refreshWorkOrders();
   });
 
@@ -130,22 +146,31 @@ var handleFormSubmit = function(event) {
 };
 
 // handleDeleteBtnClick is called when a Work Order's delete button is clicked
-var handleDeleteBtnClick = function() {
-  // Remove desired Work Order by ID from Toad DB and refresh Work Order List
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteWorkOrder(idToDelete).then(function() {
-    refreshWorkOrders();
-  });
+var handleDeleteBtnClick = function () {
   console.log("Delete bnutton");
+  // Remove desired Work Order by ID from Toad DB and refresh Work Order List
+  var idToDelete = $(this).attr("data-id");
+
+  API.deleteWorkOrder(idToDelete).then(function () {
+    // refreshWorkOrders();
+    location.reload();
+  });
 };
 
-// Add event listeners to the submit and delete buttons
-// Added class to submit button to make it reusable
-$SubmitWorkOrder.on("click", "#submit", handleFormSubmit);
+var handleViewWorkOrderBtn = function (event) {
+  
+  $.ajax({
+    url: "ViewWorkOrder"
+  })
+  // event.preventDefault();
+  // console.log("View Work Order Button");
+  // console.log(this);
+  // console.log($(this).data("id"));
+  // var idToView = $(this).data("id");
+  // console.log(idToView);
+  // HTML.getWorkOrder(idToView);
+};
+
+$SubmitWorkOrder.on("click", handleFormSubmit);
 $WorkOrderList.on("click", ".delete", handleDeleteBtnClick);
-// $(".delete").on("click", () => {
-//   console.log("Delete BUtton");
-// });
+$WorkOrderList.on("click", ".viewWorkOrder", handleViewWorkOrderBtn);

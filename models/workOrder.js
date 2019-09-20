@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // WorkOrder.associate = models => {
-  //   WorkOrder.hasMany(models.TimeSheet, {
-  //     onDelete: "cascade"
-  //   });
-  // };
+  WorkOrder.associate = models => {
+    WorkOrder.hasMany(models.TimeSheet, {
+      onDelete: "cascade"
+    });
+  };
 
   return WorkOrder;
 };

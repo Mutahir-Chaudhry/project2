@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
   });
   //Load WorkOrder Model by id, then display ViewWorkOrder.handlebars
-  app.get("/viewworkorder/:id", function(req, res) {
+  app.get("/ViewWorkOrder/:id", function(req, res) {
     db.WorkOrder.findOne({ where: { id: req.params.id } }).then(function(
       results
     ) {

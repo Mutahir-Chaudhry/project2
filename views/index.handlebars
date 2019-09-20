@@ -3,7 +3,6 @@
     <div class="container">
       <div class="row">
         <div class="col-8 offset-2">
-
           <h1>{{msg}}</h1>
           <br>
           <br>
@@ -37,7 +36,7 @@
 
               {{!-- Delete button --}}
               <div class="col">
-                <button class="btn btn-danger delete" data-id="{{WorkOrder.id}}">Delete Work Order</button>
+                <button class="btn btn-danger delete" data-id="{{this.id}}">Delete Work Order</button>
               </div>
 
               {{!-- New Time Sheet html route --}}
@@ -50,8 +49,10 @@
 
               {{!-- View Selected Work Order by ID --}}
               <div class="col">
-                <form action="/ViewWorkOrder">
-                  <button type="submit" class="btn btn-primary get">View Work Order</button>
+                {{!-- we're just gonna do a tag href --}}
+                <form action="/ViewWorkOrder/" + data-id="{{this.id}}">
+                  <button type="submit" class="btn btn-primary viewWorkOrder" data-id="{{this.id}}">View Work
+                    Order</button>
                 </form>
               </div>
             </div>
